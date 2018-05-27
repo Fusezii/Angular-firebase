@@ -1,0 +1,132 @@
+<div>
+    <app-page-header [heading]="title" [icon]="'fa-plus-square-o'"></app-page-header>
+    <div align="left">
+        <h4>    แบบฟอร์อมสมาชิก &nbsp;&nbsp;
+        <button href="Javascript:void(0)" [routerLink]="['/tables']" type="button" class="btn btn-outline-info">
+        <i class="fa fa-address-book-o"></i> จัดการสมาชิก</button>
+        </h4>
+    </div>
+
+    <div class="container">
+    <div class="card mb-3">
+    <div class="card-body">
+    <div class="row">
+    <div class="col-lg-10">
+            <form (ngSubmit)="addForm(wikiForm)" novalidate #wikiForm="ngForm"> 
+                <div class="form-group row ">
+                    <label class="col-xl-2 col-form-label">รหัสสมาชิก</label>
+                    <div class="col-xl-3">
+                        <input type="text" id="memid" class="form-control" name="memid" placeholder="รหัสสมาชิก" 
+                        ngModel [(ngModel)]="mem.memid" required memid #memid="ngModel"
+                        required minlength="3" maxlength="3" 
+                        [(ngModel)]="mem.memid">
+                        <!--<div class="invalid-feedback" *ngIf="memid.errors?.required">
+                            จำเป็นต้องระบุ
+                        </div>
+                        <div class="invalid-feedback" *ngIf="memid.errors?.minlength">
+                            จำเป็นต้องระบุอย่างน้อย 3ตัว
+                        </div>-->
+
+                    </div>
+                    <span style="color:red" class="help-block" *ngIf="!memid.valid && memid.touched">กรุณากรอกรหัสสมาชิก</span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-xl-2 col-form-label">ชื่อ<font color="red" size="4">*</font></label>
+                    <div class="col-xl-3">
+                        <input type="text" class="form-control" name="firstname" placeholder="ชื่อ" ngModel
+                        required  firstname  #firstname="ngModel"
+                        [(ngModel)]="mem.firstname">
+                    <span style="color:red" class="help-block" *ngIf="!firstname.valid && firstname.touched">กรุณากรอกชื่อ</span>
+                    </div>
+                        <label class="col-xl-2 col-form-label">นามสกุล<font color="red" size="4">*</font></label>
+                        <div class="col-xl-3">
+                            <input type="text" class="form-control" name="lastname" placeholder="นามสกุล" ngModel
+                             required  lastname  #lastname="ngModel"
+                             [(ngModel)]="mem.lastname">
+                            <span style="color:red" class="help-block" *ngIf="!lastname.valid && lastname.touched">กรุณากรอกนามสกุล</span>
+                        </div>
+                </div>       
+
+                <div class="form-group row">
+                        <label class="col-xl-2 col-form-label">เพศ</label>
+                        <div class="col-xl-3">
+                        <input type="radio"  name="sex" id="#sex" checked value="0" ng-control="sex"  [ngModel]="mem.sex"
+                        [(ngModel)]="mem.sex">
+                        <label for="radio">ชาย</label>&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="sex" id="##sex" value="1" ng-control="sex" [ngModel]="defaultSex" [ngModel]="mem.sex" 
+                        [(ngModel)]="mem.sex1" >
+                        <label for="radio">หญิง</label>
+                        </div>
+                </div>             
+
+                <div class="form-group row">
+                    <label class="col-xl-2 col-form-label">เลขบัตรประชาชน<font color="red" size="4">*</font></label>
+                    <div class="col-xl-4">
+                        <input class="form-control" placeholder="เลขบัตรประชาชน" name="no" maxlength="13"  ngModel 
+                        required no #no="ngModel"
+                        required minlength="13" maxlength="13"
+                        [(ngModel)]="mem.no">
+                    </div>
+                    <span style="color:red" class="help-block" *ngIf="!no.valid && no.touched">กรุณากรอกเลขบัตรประชาชนให้ครบ13หลัก</span>
+                    
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-xl-2 col-form-label"> ที่อยู่ <font color="red" size="4">*</font></label>
+                    <div class="col-xl-4">
+                        <textarea class="form-control" name ="address" rows="3" ngModel  required address #address="ngModel" 
+                        [(ngModel)]="mem.address"></textarea>
+                            
+                    </div>
+                    <span style="color:red" class="help-block" *ngIf="!address.valid && address.touched">กรุณากรอกที่อยู่</span>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-xl-2 col-form-label">ชื่อผู้ใช้งาน<font color="red" size="4">*</font></label>
+                    <div class="col-xl-3">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="ชื่อผู้ใช้งาน" 
+                        ngModel required  username  #username="ngModel"
+                        [(ngModel)]="mem.username">
+                    
+                       <span style="color:red" class="help-block" *ngIf="!username.valid && username.touched">กรุณากรอกชื่อผู้ใช้งาน</span>
+                    </div>                
+                        <label class="col-xl-2 col-form-label">รหัสผ่าน<font color="red" size="4">*</font></label>
+                        <div class="col-xl-3">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="รหัสผ่าน"
+                        ngModel required  password  #password="ngModel"
+                        [(ngModel)]="mem.password">
+                        
+                        <span style="color:red" class="help-block" *ngIf="!password.valid && password.touched">กรุณากรอกรหัสผ่าน</span>
+                        </div>
+                </div><br>
+                
+                <div class="row">
+                    <div class="col-xl-1">
+                        <button type="submit" class="btn btn-primary" >บันทึก</button>
+                        
+                    </div>&nbsp;&nbsp;
+                    <div class="col-xl-1">
+                        <button type="reset" class="btn btn-primary">เคลียร์ข้อมูล</button>
+                    
+                    </div>
+                    
+                 </div>
+                 
+             <!--$scope.deleteData = function(Id){ // ส่ง Id เข้ามา
+                if(confirm("Confirm delete?")){ // ขึ้นแจ้งยืนยันการลบก่อน
+            // ถ้ายืนยันการลบข้อมูลแล้ว ให้เรยกใช้งาน myFriend service ที่เราสร้าง เพื่อลบข้อมูล
+            myFriend.deleteFriend(Id).success(function(){ // ถ้า ok ลบข้อมูล
+                $location.path("#/"); // ลบแล้วให้รีเฟรส
+            });     
+            }
+            };-->
+            </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+    
+
+        

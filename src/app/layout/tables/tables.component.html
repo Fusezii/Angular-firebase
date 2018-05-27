@@ -1,0 +1,51 @@
+<div >
+    <app-page-header [heading]="'จัดการสมาชิก'"  [icon]="'fa-fw fa-address-book-o'"></app-page-header>
+    <div class="container">
+        <div class="card mb-3">
+        <div class="card-body">
+                <div align="left">
+                <h4>ข้อมูลสมาชิก &nbsp;&nbsp;
+                    <button href="Javascript:void(0)" [routerLink]="['/forms']" type="button" class="btn btn-outline-info">
+                    <i class="fa fa-plus-square-o"></i>
+                    เพิ่มข้อมูลสมาชิก</button>
+                </h4></div>
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-10">
+               
+                <table class="table table-hover" >
+                    <thead class="thead-dark">
+                    <tr >
+                        <th><div align="center">รหัสสมาชิก</div></th>
+                        <th><div align="center">ชื่อ-นามสกุล</div></th>
+                        <th><div align="center">ที่อยู่</div></th>
+                        <th><div align="center">ชื่อผู้ใช้งาน</div></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr  *ngFor="let data of member" >
+                        <th scope="row"><div align="center">{{data.value.memid}}</div></th>
+                        <td><div align="center">{{data.value.firstname}} {{data.value.lastname}}</div></td>
+                        <td><div align="center">{{data.value.address}}</div></td>
+                        <td><div align="center">{{data.value.username}}</div></td>
+                        <td><div align="center">
+                            <button type="button" class="btn btn-outline-success" (click)="editmember(data)" >
+                            <i class="fa fa-edit"></i> แก้ไขข้อมูล</button></div> 
+                        </td>
+                        <td><div align="center">
+                            <button type="button" class="btn btn-outline-danger" (click)="delmember(data)" >
+                            <i class="fa fa-trash-o"></i> ลบข้อมูล</button></div> 
+                        </td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
